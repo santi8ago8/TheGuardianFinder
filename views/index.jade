@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    p TheGuardian.com finder news
+    p Write your query
+    input(type="text",id="find")
+    p#finding
+    section.content.result.find-result
