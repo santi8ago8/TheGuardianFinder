@@ -1,0 +1,218 @@
+{"results": [
+    {
+        "id": "community",
+        "webTitle": "Community",
+        "webUrl": "http://www.theguardian.com/community",
+        "apiUrl": "http://content.guardianapis.com/community",
+        "editions": [
+            {
+                "id": "community",
+                "webTitle": "Community",
+                "webUrl": "http://www.theguardian.com/community",
+                "apiUrl": "http://content.guardianapis.com/community",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "better-business",
+        "webTitle": "Better Business",
+        "webUrl": "http://www.theguardian.com/better-business",
+        "apiUrl": "http://content.guardianapis.com/better-business",
+        "editions": [
+            {
+                "id": "better-business",
+                "webTitle": "Better Business",
+                "webUrl": "http://www.theguardian.com/better-business",
+                "apiUrl": "http://content.guardianapis.com/better-business",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "enterprise-network",
+        "webTitle": "Guardian Enterprise Network",
+        "webUrl": "http://www.theguardian.com/enterprise-network",
+        "apiUrl": "http://content.guardianapis.com/enterprise-network",
+        "editions": [
+            {
+                "id": "enterprise-network",
+                "webTitle": "Guardian Enterprise Network",
+                "webUrl": "http://www.theguardian.com/enterprise-network",
+                "apiUrl": "http://content.guardianapis.com/enterprise-network",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "local",
+        "webTitle": "Local",
+        "webUrl": "http://www.theguardian.com/local",
+        "apiUrl": "http://content.guardianapis.com/local",
+        "editions": [
+            {
+                "id": "local",
+                "webTitle": "Local",
+                "webUrl": "http://www.theguardian.com/local",
+                "apiUrl": "http://content.guardianapis.com/local",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "government-computing-network",
+        "webTitle": "Guardian Government Computing",
+        "webUrl": "http://www.theguardian.com/government-computing-network",
+        "apiUrl": "http://content.guardianapis.com/government-computing-network",
+        "editions": [
+            {
+                "id": "government-computing-network",
+                "webTitle": "Guardian Government Computing",
+                "webUrl": "http://www.theguardian.com/government-computing-network",
+                "apiUrl": "http://content.guardianapis.com/government-computing-network",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "search",
+        "webTitle": "Search",
+        "webUrl": "http://www.theguardian.com/search",
+        "apiUrl": "http://content.guardianapis.com/search",
+        "editions": [
+            {
+                "id": "search",
+                "webTitle": "Search",
+                "webUrl": "http://www.theguardian.com/search",
+                "apiUrl": "http://content.guardianapis.com/search",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "culture-network",
+        "webTitle": "Culture Network",
+        "webUrl": "http://www.theguardian.com/culture-network",
+        "apiUrl": "http://content.guardianapis.com/culture-network",
+        "editions": [
+            {
+                "id": "culture-network",
+                "webTitle": "Culture Network",
+                "webUrl": "http://www.theguardian.com/culture-network",
+                "apiUrl": "http://content.guardianapis.com/culture-network",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "katine",
+        "webTitle": "Katine",
+        "webUrl": "http://www.theguardian.com/katine",
+        "apiUrl": "http://content.guardianapis.com/katine",
+        "editions": [
+            {
+                "id": "katine",
+                "webTitle": "Katine",
+                "webUrl": "http://www.theguardian.com/katine",
+                "apiUrl": "http://content.guardianapis.com/katine",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "education",
+        "webTitle": "Education",
+        "webUrl": "http://www.theguardian.com/education",
+        "apiUrl": "http://content.guardianapis.com/education",
+        "editions": [
+            {
+                "id": "education",
+                "webTitle": "Education",
+                "webUrl": "http://www.theguardian.com/education",
+                "apiUrl": "http://content.guardianapis.com/education",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "society",
+        "webTitle": "Society",
+        "webUrl": "http://www.theguardian.com/society",
+        "apiUrl": "http://content.guardianapis.com/society",
+        "editions": [
+            {
+                "id": "society",
+                "webTitle": "Society",
+                "webUrl": "http://www.theguardian.com/society",
+                "apiUrl": "http://content.guardianapis.com/society",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "info",
+        "webTitle": "Info",
+        "webUrl": "http://www.theguardian.com/info",
+        "apiUrl": "http://content.guardianapis.com/info",
+        "editions": [
+            {
+                "id": "info",
+                "webTitle": "Info",
+                "webUrl": "http://www.theguardian.com/info",
+                "apiUrl": "http://content.guardianapis.com/info",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "childrens-books-site",
+        "webTitle": "Children's books",
+        "webUrl": "http://www.theguardian.com/childrens-books-site",
+        "apiUrl": "http://content.guardianapis.com/childrens-books-site",
+        "editions": [
+            {
+                "id": "childrens-books-site",
+                "webTitle": "Children's books",
+                "webUrl": "http://www.theguardian.com/childrens-books-site",
+                "apiUrl": "http://content.guardianapis.com/childrens-books-site",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "help",
+        "webTitle": "Help",
+        "webUrl": "http://www.theguardian.com/help",
+        "apiUrl": "http://content.guardianapis.com/help",
+        "editions": [
+            {
+                "id": "help",
+                "webTitle": "Help",
+                "webUrl": "http://www.theguardian.com/help",
+                "apiUrl": "http://content.guardianapis.com/help",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "cardiff",
+        "webTitle": "Cardiff",
+        "webUrl": "http://www.theguardian.com/cardiff",
+        "apiUrl": "http://content.guardianapis.com/cardiff",
+        "editions": [
+            {
+                "id": "cardiff",
+                "webTitle": "Cardiff",
+                "webUrl": "http://www.theguardian.com/cardiff",
+                "apiUrl": "http://content.guardianapis.com/cardiff",
+                "code": "default"
+            }
+        ]
+    },
+    {
+        "id": "extra",
+        "webTitle": "Extra",
+        "webUrl": "http://www.theguardian.com/extra",
+        "apiUrl": ""
+    }
+]}

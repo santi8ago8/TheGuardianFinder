@@ -2,9 +2,13 @@ doctype html
 html
     head
         title= title
+        meta(name="viewport", content="initial-scale = 1.0,maximum-scale = 1.0")
+        link(href='http://fonts.googleapis.com/css?family=PT+Sans' ,rel='stylesheet', type='text/css')
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(src='/javascripts/socket.io.min.js',type="text/javascript")
-        script(src='/javascripts/jade.js',type="text/javascript")
+        script(src='/javascripts/jade.min.js',type="text/javascript")
+        script(src='/javascripts/moment.min.js',type="text/javascript")
+        script(src='/javascripts/boq.js',type="text/javascript")
         script(src='/javascripts/engine.js',type="text/javascript")
         script(type='text/template',id='tmplResults')
             include result.js

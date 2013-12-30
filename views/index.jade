@@ -1,8 +1,14 @@
 extends layout
 
 block content
-    p TheGuardian.com finder news
-    p Write your query
+    head
+        h1 The Guardian
+    nav
+        each section in sections
+            div
+                input.section(type="checkbox",id="#{section.id}")
+                label(for="#{section.id}") #{section.webTitle}
     input(type="text",id="find")
     p#finding
     section.content.result.find-result
+    a#next Next

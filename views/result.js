@@ -5,3 +5,5 @@
         a(href=not.webUrl)
             img(src=not.fields.thumbnail)
             p= not.webTitle
+            .clear
+        .clear

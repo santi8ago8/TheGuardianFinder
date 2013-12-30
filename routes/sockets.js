@@ -10,11 +10,12 @@ var util = require('util');
 io.sockets.on('connection', function (socket) {
     socket.on('find', function (data) {
         var value = data.find;
-        var url = "http://content.guardianapis.com/search?q=%s&show-fields=thumbnail&api-key=%s";
+        if (value == '' || value == null)
+            value = "+";
+        var url = "http://content.guardianapis.com/search?q=%s&show-fields=thumbnail&page=%s&api-key=%s";
         var apiKey = "be2jzzzm5hgtv2gzp3et9zuw";
-        var finalUrl = util.format(url, value, apiKey);
+        var finalUrl = util.format(url, value, data.page, apiKey);
         needle.get(finalUrl, function (err, resp, body) {
-            console.log('done find!');
             if (!err && resp.statusCode == 200) {
                 socket.emit('result', body);
             }
