@@ -1,7 +1,7 @@
 TheGuardianFinder
 =================
 
-TheGuardianFinder with the guardian open api/platform  
+TheGuardian reader with "The Guardian open platform"  
 
 to run:
 $ node app.js   
