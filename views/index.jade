@@ -1,14 +1,18 @@
 extends layout
-
 block content
-    head
-        h1 The Guardian
-    nav
+    header
+        .categories.icon-menu
+        .find.icon-search
+        h1
+            span.the the
+            span.guardian guardian
+    nav.none
         each section in sections
             div
                 input.section(type="checkbox",id="#{section.id}")
                 label(for="#{section.id}") #{section.webTitle}
-    input(type="text",id="find")
-    p#finding
-    section.content.result.find-result
-    a#next Next
+
+    .content
+        input(type="text",id="find").none
+        section.content.result.find-result
+        a#next Next

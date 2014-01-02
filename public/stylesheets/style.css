@@ -1,18 +1,427 @@
+@font-face {
+  font-family: 'icons';
+  src: url("fonts/icons.eot");
+  src: url("fonts/icons.eot?#iefix") format('embedded-opentype'), url("fonts/icons.woff") format('woff'), url("fonts/icons.ttf") format('truetype'), url("fonts/icons.svg#icons") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+  padding-top: 4px;
+}
+.icon-search:before {
+  content: "\e600";
+}
+.icon-menu:before {
+  content: "\e601";
+}
 body {
   padding: 0;
   margin: 0;
   font-size: 16px;
   font-family: 'PT Sans';
+  margin-top: 33px;
 }
 a {
   color: #00b7ff;
 }
+header {
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 32px;
+}
+header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+header .the,
+header .categories.icon-menu {
+  -webkit-animation: the 30s ease infinite;
+  -moz-animation: the 30s ease infinite;
+  -o-animation: the 30s ease infinite;
+  animation: the 30s ease infinite;
+}
+header .guardian,
+header .find.icon-search {
+  -webkit-animation: guardian 30s ease infinite;
+  -moz-animation: guardian 30s ease infinite;
+  -o-animation: guardian 30s ease infinite;
+  animation: guardian 30s ease infinite;
+}
+header .categories,
+header .find {
+  width: 30px;
+}
+header .categories {
+  float: left;
+  padding-left: 6px;
+}
+header .find {
+  float: right;
+}
 .clear {
   clear: both;
 }
+.content {
+  vertical-align: top;
+}
+.notice {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
 .notice img {
   float: left;
+  width: 100%;
 }
 .notice p {
   margin: 0;
+}
+.none {
+  display: none;
+}
+@-moz-keyframes the {
+  0% {
+    color: #74c274;
+  }
+
+  12% {
+    color: #99bcdb;
+  }
+
+  24% {
+    color: #7cbb02;
+  }
+
+  48% {
+    color: #e97fc5;
+  }
+
+  60% {
+    color: #cd83e7;
+  }
+
+  72% {
+    color: #ffc204;
+  }
+
+  84% {
+    color: #83d1fd;
+  }
+
+  100% {
+    color: #74c274;
+  }
+}
+@-webkit-keyframes the {
+  0% {
+    color: #74c274;
+  }
+
+  12% {
+    color: #99bcdb;
+  }
+
+  24% {
+    color: #7cbb02;
+  }
+
+  48% {
+    color: #e97fc5;
+  }
+
+  60% {
+    color: #cd83e7;
+  }
+
+  72% {
+    color: #ffc204;
+  }
+
+  84% {
+    color: #83d1fd;
+  }
+
+  100% {
+    color: #74c274;
+  }
+}
+@-o-keyframes the {
+  0% {
+    color: #74c274;
+  }
+
+  12% {
+    color: #99bcdb;
+  }
+
+  24% {
+    color: #7cbb02;
+  }
+
+  48% {
+    color: #e97fc5;
+  }
+
+  60% {
+    color: #cd83e7;
+  }
+
+  72% {
+    color: #ffc204;
+  }
+
+  84% {
+    color: #83d1fd;
+  }
+
+  100% {
+    color: #74c274;
+  }
+}
+@-ms-keyframes the {
+  0% {
+    color: #74c274;
+  }
+
+  12% {
+    color: #99bcdb;
+  }
+
+  24% {
+    color: #7cbb02;
+  }
+
+  48% {
+    color: #e97fc5;
+  }
+
+  60% {
+    color: #cd83e7;
+  }
+
+  72% {
+    color: #ffc204;
+  }
+
+  84% {
+    color: #83d1fd;
+  }
+
+  100% {
+    color: #74c274;
+  }
+}
+@keyframes the {
+  0% {
+    color: #74c274;
+  }
+
+  12% {
+    color: #99bcdb;
+  }
+
+  24% {
+    color: #7cbb02;
+  }
+
+  48% {
+    color: #e97fc5;
+  }
+
+  60% {
+    color: #cd83e7;
+  }
+
+  72% {
+    color: #ffc204;
+  }
+
+  84% {
+    color: #83d1fd;
+  }
+
+  100% {
+    color: #74c274;
+  }
+}
+@-moz-keyframes guardian {
+  0% {
+    color: #0f3e02;
+  }
+
+  12% {
+    color: #024b84;
+  }
+
+  24% {
+    color: #4b7903;
+  }
+
+  48% {
+    color: #7e0254;
+  }
+
+  60% {
+    color: #410286;
+  }
+
+  72% {
+    color: #c93a02;
+  }
+
+  84% {
+    color: #086fc9;
+  }
+
+  100% {
+    color: #0f3e02;
+  }
+}
+@-webkit-keyframes guardian {
+  0% {
+    color: #0f3e02;
+  }
+
+  12% {
+    color: #024b84;
+  }
+
+  24% {
+    color: #4b7903;
+  }
+
+  48% {
+    color: #7e0254;
+  }
+
+  60% {
+    color: #410286;
+  }
+
+  72% {
+    color: #c93a02;
+  }
+
+  84% {
+    color: #086fc9;
+  }
+
+  100% {
+    color: #0f3e02;
+  }
+}
+@-o-keyframes guardian {
+  0% {
+    color: #0f3e02;
+  }
+
+  12% {
+    color: #024b84;
+  }
+
+  24% {
+    color: #4b7903;
+  }
+
+  48% {
+    color: #7e0254;
+  }
+
+  60% {
+    color: #410286;
+  }
+
+  72% {
+    color: #c93a02;
+  }
+
+  84% {
+    color: #086fc9;
+  }
+
+  100% {
+    color: #0f3e02;
+  }
+}
+@-ms-keyframes guardian {
+  0% {
+    color: #0f3e02;
+  }
+
+  12% {
+    color: #024b84;
+  }
+
+  24% {
+    color: #4b7903;
+  }
+
+  48% {
+    color: #7e0254;
+  }
+
+  60% {
+    color: #410286;
+  }
+
+  72% {
+    color: #c93a02;
+  }
+
+  84% {
+    color: #086fc9;
+  }
+
+  100% {
+    color: #0f3e02;
+  }
+}
+@keyframes guardian {
+  0% {
+    color: #0f3e02;
+  }
+
+  12% {
+    color: #024b84;
+  }
+
+  24% {
+    color: #4b7903;
+  }
+
+  48% {
+    color: #7e0254;
+  }
+
+  60% {
+    color: #410286;
+  }
+
+  72% {
+    color: #c93a02;
+  }
+
+  84% {
+    color: #086fc9;
+  }
+
+  100% {
+    color: #0f3e02;
+  }
 }
