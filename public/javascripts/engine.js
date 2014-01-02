@@ -22,6 +22,55 @@
             }
         });
         socket.emit('find', {find: value, page: currentPage});
+        var sections = b.u.qs('.section');
+        sections.each(function (it) {
+            it.addEventListener('change', function (e) {
+                var isAll;
+                if (e.target.id == 'all' && e.target.checked) {
+                    //clean rest.
+                    sections.each(function (i) {
+                        i.checked = false;
+                    }, 1);
+                    isAll = true;
+                }
+                if (e.target.id != 'all' && e.target.checked)
+                    b.u.qs('#all.section')[0].checked = false;
+                var isAny = false;
+                sections.each(function (i) {
+                    if (!isAny)
+                        isAny = i.checked
+                });
+                if (!isAny)
+                    b.u.qs('#all.section')[0].checked = true;
+
+                if (isAll) {
+                    //find all news.
+                }
+                else {
+                    //find by selected categories.
+                    var cats = new b.Array();
+                    sections.each(function (i) {
+                        if (i.checked)
+                            cats.push(i.id);
+                    });
+                    //TODO: en cats estan las categorías ahora hay que hacer el find :D
+                }
+                //if not select any, select all,
+                //save in local storage.
+
+
+                //always reload the news.
+            });
+        });
+        b.u.qs('.categories')[0].addEventListener('click', function () {
+            var element = b.u.qs('nav.cats')[0];
+            var style = element.style.display;
+            if (element.classList.contains('none'))
+                element.classList.remove('none');
+            else
+                element.classList.add('none');
+        });
+
     };
 
     var find = function (e) {
