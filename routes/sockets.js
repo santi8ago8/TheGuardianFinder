@@ -13,6 +13,10 @@ io.sockets.on('connection', function (socket) {
         if (value == '' || value == null)
             value = "+";
         var url = "http://content.guardianapis.com/search?q=%s&show-fields=thumbnail&page=%s&api-key=%s";
+        if (data.sections.length > 0) {
+            url += "&section=" + data.sections.join('|');
+        }
+        console.log(url);
         var apiKey = "be2jzzzm5hgtv2gzp3et9zuw";
         var finalUrl = util.format(url, value, data.page, apiKey);
         needle.get(finalUrl, function (err, resp, body) {

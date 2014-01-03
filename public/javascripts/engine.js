@@ -8,22 +8,24 @@
     var totalPages = 1;
     var currentPage = 1;
     var value;
+    var cats = new b.Array();
+    var storageCats = window.localStorage.getItem('cats');
+    if (storageCats) {
+        cats = new b.Array(JSON.parse(storageCats));
+    }
     window.initEngine = function () {
-        var input = document.querySelector('#find');
+        var input = b.u.qs('#find').f();
         input.addEventListener('keyup', find);
-        template = document.querySelector('#tmplResults');
+        template = b.u.qs('#tmplResults').f();
         template = jade.compile(template.text || template.innerText || template.innerHTML);
-        var next = document.querySelector('#next');
-        next.addEventListener('click', function (e) {
-            e.preventDefault();
-            if (currentPage <= totalPages) {
-                currentPage++;
-                socket.emit('find', {find: value, page: currentPage});
-            }
-        });
-        socket.emit('find', {find: value, page: currentPage});
+        if (cats.length == 0) {
+            b.u.qs('#all.section').f().checked = true;
+        }
         var sections = b.u.qs('.section');
         sections.each(function (it) {
+            if (cats.indexOf(it.id) != -1) {
+                it.checked = true;
+            }
             it.addEventListener('change', function (e) {
                 var isAll;
                 if (e.target.id == 'all' && e.target.checked) {
@@ -34,42 +36,53 @@
                     isAll = true;
                 }
                 if (e.target.id != 'all' && e.target.checked)
-                    b.u.qs('#all.section')[0].checked = false;
+                    b.u.qs('#all.section').f().checked = false;
                 var isAny = false;
                 sections.each(function (i) {
                     if (!isAny)
                         isAny = i.checked
                 });
                 if (!isAny)
-                    b.u.qs('#all.section')[0].checked = true;
-
-                if (isAll) {
-                    //find all news.
-                }
-                else {
-                    //find by selected categories.
-                    var cats = new b.Array();
+                    b.u.qs('#all.section').f().checked = true;
+                cats = new b.Array();
+                if (!isAll) {
+                    //finding selected categories.
                     sections.each(function (i) {
                         if (i.checked)
                             cats.push(i.id);
                     });
-                    //TODO: en cats estan las categorías ahora hay que hacer el find :D
                 }
-                //if not select any, select all,
-                //save in local storage.
-
+                window.localStorage.setItem('cats', JSON.stringify(cats));
 
                 //always reload the news.
+                currentPage = 1;
+                totalPages = 1;
+
             });
         });
-        b.u.qs('.categories')[0].addEventListener('click', function () {
-            var element = b.u.qs('nav.cats')[0];
-            var style = element.style.display;
+        b.u.qs('.categories').f().addEventListener('click', function () {
+            var element = b.u.qs('nav.cats').f();
             if (element.classList.contains('none'))
                 element.classList.remove('none');
-            else
+            else {
                 element.classList.add('none');
+                b.Router.goTo('/');
+            }
         });
+        //
+
+        b.Router.on("/", {
+            cb: renderIndex,
+            container: '.content.result.find-result',
+            exit:function(){
+                b.u.qs('#next').f().classList.add('none');
+            }
+        });
+        b.Router.on("/news/:idnot", {
+            cb: renderNot,
+            container: '.content.result.find-result'
+        });
+
 
     };
 
@@ -90,12 +103,17 @@
     };
 
     var showResults = function (data) {
-        var content = document.querySelector('.content.result.find-result');
+        var content = b.u.qs('.content.result.find-result').f();
+        b.u.qs('#next').f().classList.remove('none');
+        if (content.classList.contains('loading')) {
+            content.innerHTML = '';
+            content.classList.remove('loading');
+        }
         var div = document.createElement('div');
         div.innerHTML = template(data);
         var childrens = new b.Array(div.children);
         while (childrens.length > 0) {
-            content.appendChild(childrens[0]);
+            content.appendChild(childrens.f());
         }
         totalPages = data.response.pages;
         currentPage = data.response.currentPage;
@@ -103,6 +121,33 @@
     var showError = function (dataError) {
         console.log("Error: ", dataError);
     };
+
+    var renderIndex = function (config) {
+
+        loadingNews();
+
+        var next = b.u.qs('#next').f();
+        next.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (currentPage <= totalPages) {
+                currentPage++;
+                socket.emit('find', {find: value, page: currentPage, sections: cats });
+            }
+        });
+        socket.emit('find', {find: value, page: currentPage, sections: cats});
+    };
+    var loadingNews = function () {
+        var l = b.u.qs('.content.result.find-result').f();
+        l.innerHTML = 'load...'
+        l.classList.add('loading');
+    };
+
+    var renderNot = function (config) {
+
+        loadingNews();
+        config.params.idnot = decodeURIComponent(config.params.idnot);
+    };
+
     socket.on('error', showError);
     socket.on('result', showResults);
 }(window));

@@ -5,6 +5,26 @@
   font-weight: normal;
   font-style: normal;
 }
+@media all and (max-width: 500px) and (min-width: 0px) {
+  .notice {
+    width: 50%;
+  }
+}
+@media all and (min-width: 500px) and (max-width: 600px) {
+  .notice {
+    width: 33.3333%;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 1000px) {
+  .notice {
+    width: 25%;
+  }
+}
+@media all and (min-width: 1000px) {
+  .notice {
+    width: 20%;
+  }
+}
 [class^="icon-"],
 [class*=" icon-"] {
   font-family: 'icons';
@@ -32,9 +52,11 @@ body {
   font-size: 16px;
   font-family: 'PT Sans';
   margin-top: 33px;
+  text-align: center;
 }
 a {
   color: #00b7ff;
+  text-decoration: none;
 }
 header {
   background-color: #fff;
@@ -80,9 +102,16 @@ header .find {
 .content {
   vertical-align: top;
 }
+/*centrable*/
+.content,
+header,
+.cats {
+  max-width: 1200px;
+  text-align: left;
+  margin: auto;
+}
 .notice {
   display: inline-block;
-  width: 50%;
   vertical-align: top;
 }
 .notice img {

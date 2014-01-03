@@ -43,6 +43,19 @@
   100%
     color #0f3e02
 
+@media all and (max-width: 500px) and (min-width: 0px)
+  .notice
+    width 50%;
+@media all and (min-width: 500px) and (max-width: 600px)
+  .notice
+    width 33.3333%;
+@media all and (min-width: 600px) and (max-width: 1000px)
+  .notice
+    width 25%
+@media all and (min-width: 1000px)
+  .notice
+    width 20%;
+
 [class^="icon-"], [class*=" icon-"]
   font-family: 'icons';
   speak: none;
@@ -58,13 +71,13 @@
   font-size 24px
   padding-top 4px
 
-.icon-search:before {
+.icon-search:before
   content: "\e600";
 
-}
-.icon-menu:before {
+
+.icon-menu:before
   content: "\e601";
-}
+
 
 body
   padding 0
@@ -72,8 +85,10 @@ body
   font-size: 16px
   font-family 'PT Sans'
   margin-top 33px
+  text-align center
 a
   color: #00B7FF
+  text-decoration none
 
 header
   background-color white
@@ -109,9 +124,14 @@ header
 .content
   vertical-align top
 
+/*centrable*/
+.content, header, .cats
+  max-width 1200px
+  text-align left
+  margin auto
+
 .notice
   display inline-block
-  width 50%
   vertical-align top
   img
     float left
