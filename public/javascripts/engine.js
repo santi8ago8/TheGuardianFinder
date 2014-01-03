@@ -79,6 +79,8 @@
             container: '.content.result.find-result',
             exit: function () {
                 b.u.qs('#next').f().classList.add('none');
+                totalPages = 1;
+                currentPage = 1;
             }
         });
         b.Router.on("/news/:idnot", {
@@ -155,8 +157,8 @@
 
         config.params.idnot = decodeURIComponent(config.params.idnot);
         viewNot = function (data) {
-            b.u.log(data);
-            config.container.f().innerHTML = templateNot({not: data});
+            //data.fields.lastModified = moment(data.fields.lastModified).fromNow();
+            config.container.f().innerHTML = templateNot({not: data, moment: moment});
             var iFrame = config.container.f().querySelector('iframe');
             if (iFrame)
                 iFrame.remove();
