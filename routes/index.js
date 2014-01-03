@@ -7,7 +7,7 @@ exports.index = function (req, res) {
     var init = function () {
         res.render('index', { sections: cachedSections });
     };
-    if (cachedSections.length == 0){
+    if (cachedSections.length == 0) {
         setTimeout(init, 250);
     }
     else init();
@@ -35,10 +35,8 @@ needle.get(finalUrl, function (err, resp, body) {
             var o = body.response.results[i];
             cachedSections.push(o);
         }
-
     }
     else {
-        console.log(body);
-        socket.emit('error', body);
+        console.log(body, err);
     }
 });

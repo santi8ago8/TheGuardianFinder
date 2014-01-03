@@ -5,6 +5,7 @@
 (function (window) {
     var socket = io.connect();
     var template;
+    var templateNot;
     var totalPages = 1;
     var currentPage = 1;
     var value;
@@ -18,6 +19,8 @@
         input.addEventListener('keyup', find);
         template = b.u.qs('#tmplResults').f();
         template = jade.compile(template.text || template.innerText || template.innerHTML);
+        templateNot = b.u.qs('#tmlpView').f();
+        templateNot = jade.compile(templateNot.text || templateNot.innerText || templateNot.innerHTML);
         if (cats.length == 0) {
             b.u.qs('#all.section').f().checked = true;
         }
@@ -74,13 +77,16 @@
         b.Router.on("/", {
             cb: renderIndex,
             container: '.content.result.find-result',
-            exit:function(){
+            exit: function () {
                 b.u.qs('#next').f().classList.add('none');
             }
         });
         b.Router.on("/news/:idnot", {
             cb: renderNot,
-            container: '.content.result.find-result'
+            container: '.content.result.find-result',
+            exit: function () {
+                socket.removeListener('view', viewNot);
+            }
         });
 
 
@@ -142,12 +148,23 @@
         l.classList.add('loading');
     };
 
+    var viewNot;
     var renderNot = function (config) {
 
         loadingNews();
-        config.params.idnot = decodeURIComponent(config.params.idnot);
-    };
 
+        config.params.idnot = decodeURIComponent(config.params.idnot);
+        viewNot = function (data) {
+            b.u.log(data);
+            config.container.f().innerHTML = templateNot({not: data});
+            var iFrame = config.container.f().querySelector('iframe');
+            if (iFrame)
+                iFrame.remove();
+        };
+        socket.on('view', viewNot);
+
+        socket.emit('view', {id: config.params.idnot});
+    };
     socket.on('error', showError);
     socket.on('result', showResults);
 }(window));
