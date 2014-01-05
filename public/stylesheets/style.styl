@@ -7,6 +7,14 @@
     url('fonts/icons.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
+
+@keyframes dogload
+  from
+    background-position 0px
+  to
+    background-position -896px
+
+
 @keyframes the
   0%
     color #74c274
@@ -141,3 +149,12 @@ header
 
 .none
   display none;
+
+.loader
+  background-image url("/img/dogload.GIF")
+  width 128px;
+  height 64px;
+  -webkit-animation: dogload .36s steps(7) infinite
+  -moz-animation:  dogload .36s steps(7) infinite
+  -o-animation:  dogload .36s steps(7) infinite
+  animation:  dogload .36s steps(7) infinite

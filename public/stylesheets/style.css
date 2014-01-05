@@ -124,6 +124,60 @@ header,
 .none {
   display: none;
 }
+.loader {
+  background-image: url("/img/dogload.GIF");
+  width: 128px;
+  height: 64px;
+  -webkit-animation: dogload 0.5s steps(7) infinite;
+  -moz-animation: dogload 3s ease infinite;
+  -o-animation: dogload 3s ease infinite;
+  animation: dogload 3s ease infinite;
+}
+@-moz-keyframes dogload {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -896px;
+  }
+}
+@-webkit-keyframes dogload {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -896px;
+  }
+}
+@-o-keyframes dogload {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -896px;
+  }
+}
+@-ms-keyframes dogload {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -896px;
+  }
+}
+@keyframes dogload {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: -896px;
+  }
+}
 @-moz-keyframes the {
   0% {
     color: #74c274;

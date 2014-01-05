@@ -146,7 +146,7 @@
     };
     var loadingNews = function () {
         var l = b.u.qs('.content.result.find-result').f();
-        l.innerHTML = 'load...'
+        l.innerHTML = '<div class="loader"></div>'
         l.classList.add('loading');
     };
 
