@@ -17,7 +17,8 @@ var cachedSections = [];
 var url = "http://content.guardianapis.com/sections?api-key=%s";
 var apiKey = "be2jzzzm5hgtv2gzp3et9zuw";
 var finalUrl = util.format(url, apiKey);
-needle.get(finalUrl, function (err, resp, body) {
+
+var getCategories = function (err, resp, body) {
     if (!err && resp.statusCode == 200) {
         cachedSections = [];
         cachedSections.push({id: 'all', webTitle: 'All sections'});
@@ -35,8 +36,14 @@ needle.get(finalUrl, function (err, resp, body) {
             var o = body.response.results[i];
             cachedSections.push(o);
         }
+        console.log('sections loaded');
     }
     else {
-        console.log(body, err);
+        console.log("Error in get sections: ", body, err);
+        needle.get(finalUrl, getCategories);
+        console.log('try again');
     }
-});
+
+};
+
+needle.get(finalUrl, getCategories);
