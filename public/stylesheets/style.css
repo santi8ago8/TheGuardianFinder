@@ -124,6 +124,11 @@ header,
 .none {
   display: none;
 }
+.next {
+  margin: 1em;
+  text-align: center;
+  cursor: pointer;
+}
 .loader {
   background-image: url("/img/dogload.GIF");
   width: 128px;
@@ -132,6 +137,7 @@ header,
   -moz-animation: dogload 0.36s steps(7) infinite;
   -o-animation: dogload 0.36s steps(7) infinite;
   animation: dogload 0.36s steps(7) infinite;
+  margin: 0 auto;
 }
 @-moz-keyframes dogload {
   0% {

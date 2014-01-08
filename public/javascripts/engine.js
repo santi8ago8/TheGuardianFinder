@@ -117,6 +117,10 @@
             content.innerHTML = '';
             content.classList.remove('loading');
         }
+        else {
+            var loaders = b.u.qs('.loader');
+                loaders.f().remove();
+        }
         var div = document.createElement('div');
         div.innerHTML = template(data);
         var childrens = new b.Array(div.children);
@@ -138,16 +142,27 @@
         next.addEventListener('click', function (e) {
             e.preventDefault();
             if (currentPage <= totalPages) {
+                loadingNews(true);
                 currentPage++;
                 socket.emit('find', {find: value, page: currentPage, sections: cats });
             }
         });
         socket.emit('find', {find: value, page: currentPage, sections: cats});
     };
-    var loadingNews = function () {
+    var loadingNews = function (notClear) {
         var l = b.u.qs('.content.result.find-result').f();
-        l.innerHTML = '<div class="loader"></div>'
-        l.classList.add('loading');
+
+
+        if (notClear) {
+
+        }
+        else {
+            l.classList.add('loading');
+            l.innerHTML = '';
+        }
+        var load = document.createElement('div');
+        load.setAttribute('class', 'loader');
+        l.appendChild(load);
     };
 
     var viewNot;

@@ -24,7 +24,7 @@ io.sockets.on('connection', function (socket) {
                 socket.emit('result', body);
             }
             else {
-                console.log(body);
+                console.log(body, err);
                 socket.emit('error', body);
             }
         });
