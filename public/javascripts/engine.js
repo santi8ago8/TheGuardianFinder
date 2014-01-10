@@ -170,8 +170,6 @@
     var loadingNews = function (notClear) {
         var l = b.u.qs('.content.result.find-result').f();
 
-
-
         if (notClear) {
 
         }
