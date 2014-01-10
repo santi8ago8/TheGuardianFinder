@@ -15,8 +15,7 @@
         cats = new b.Array(JSON.parse(storageCats));
     }
     window.initEngine = function () {
-        var input = b.u.qs('#find').f();
-        input.addEventListener('keyup', find);
+
         template = b.u.qs('#tmplResults').f();
         template = jade.compile(template.text || template.innerText || template.innerHTML);
         templateNot = b.u.qs('#tmlpView').f();
@@ -63,6 +62,8 @@
 
             });
         });
+        var input = b.u.qs('#find').f();
+        input.addEventListener('keyup', find);
         b.u.qs('.categories').f().addEventListener('click', function () {
             var element = b.u.qs('nav.cats').f();
             if (element.classList.contains('none'))
@@ -72,8 +73,8 @@
                 b.Router.goTo('/');
             }
         });
-        //
 
+        //
         b.Router.on("/", {
             cb: renderIndex,
             container: '.content.result.find-result',
@@ -91,6 +92,22 @@
             }
         });
 
+        b.u.qs('.find').f().addEventListener('click', function () {
+            var textFind = b.u.qs('#find').f();
+            if (textFind.classList.contains('none')) {
+                textFind.classList.remove('none');
+                textFind.focus();
+            }
+            else {
+                textFind.classList.add('none');
+                loadingNews();
+                textFind.value = '';
+                value = '';
+                totalPages = 1;
+                currentPage = 1;
+                socket.emit('find', {find: value, page: currentPage, sections: cats});
+            }
+        });
 
     };
 
@@ -102,11 +119,10 @@
             totalPages = 1;
             currentPage = 1;
             value = input.value;
-            var findingTxt = document.querySelector('#finding');
-            findingTxt.innerText = "Finding: " + value;
-            socket.emit('find', {find: value, page: currentPage});
-            var content = document.querySelector('.content.result.find-result');
-            content.innerHTML = "";
+
+            socket.emit('find', {find: value, page: currentPage, sections: cats});
+
+            loadingNews();
         }
     };
 
@@ -119,7 +135,9 @@
         }
         else {
             var loaders = b.u.qs('.loader');
-                loaders.f().remove();
+            loaders.each(function (it) {
+                it.remove();
+            })
         }
         var div = document.createElement('div');
         div.innerHTML = template(data);
@@ -151,6 +169,7 @@
     };
     var loadingNews = function (notClear) {
         var l = b.u.qs('.content.result.find-result').f();
+
 
 
         if (notClear) {

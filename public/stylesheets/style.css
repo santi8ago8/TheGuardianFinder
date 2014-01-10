@@ -96,6 +96,14 @@ header .categories {
 header .find {
   float: right;
 }
+.center {
+  text-align: center;
+}
+#find {
+  width: 99%;
+  margin: 0 auto 0.8em auto;
+  border: 1px solid #ccc;
+}
 .clear {
   clear: both;
 }
@@ -125,9 +133,13 @@ header,
   display: none;
 }
 .next {
-  margin: 1em;
+  margin: 0;
   text-align: center;
   cursor: pointer;
+}
+.next a {
+  padding: 1em;
+  display: block;
 }
 .loader {
   background-image: url("/img/dogload.GIF");
