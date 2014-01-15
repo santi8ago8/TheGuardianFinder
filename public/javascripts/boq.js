@@ -93,6 +93,21 @@
             return parseInt(boq.utils.random(min, max));
         },
         /**
+         * get keys from object.
+         * @param {object} sourceObject
+         * @returns {boq.Array}
+         */
+        keys: function (sourceObject) {
+            var ret = new boq.Array();
+            for (var i in sourceObject) {
+                //check if property is direct from the object
+                if (sourceObject.hasOwnProperty && sourceObject.hasOwnProperty(i)) {
+                    ret.push(i);
+                }
+            }
+            return ret;
+        },
+        /**
          * get an boq.Array with document.querySelector
          * @param query query selector
          * @returns {boq.Array}
@@ -226,7 +241,83 @@
         self.last = self.l = function () {
             return self[self.length - 1];
         };
+        /**
+         * get a random element from array.
+         * @returns {object}
+         */
+        self.randomElem = function () {
+            return self[boq.utils.randomInt(0, self.length)];
+        };
+        /**
+         * get elements with even indexes
+         * @returns {*}
+         */
+        self.even = function () {
+            return self.each(function () {
+            }, 0, 2);
+        };
+        /**
+         * get elements with uneven indexes
+         * @returns {*}
+         */
+        self.uneven = function () {
+            return self.each(function () {
+            }, 1, 2)
+        };
+        /**
+         * group an elements from array, creating a object
+         * @param propertyName the property that read from object
+         * @param [restName='default'] name of the default property, use in elements with value: null, undefined, false, 0
+         * @returns {object}
+         */
+        self.groupBy = function (propertyName, restName) {
+            var result = {};
+            if (typeof restName === 'undefined') {
+                restName = "default";
+            }
+            self.each(function (it) {
+                var pName = it[propertyName] ? it[propertyName] : restName;
+                if (!result[pName])
+                    result[pName] = new boq.Array();
 
+                result[pName].push(it);
+            });
+            return result;
+        };
+        /**
+         * return the count of ocurrences of the element, using the three equals operator.
+         * @param {object} element element to find
+         * @param {number} [start=1] start index
+         * @returns {number}
+         */
+        self.ocurrences = function (element, start) {
+            if (typeof start === 'undefined')
+                start = 0;
+            var count = 0;
+            self.each(function (it, ind) {
+                //using the three equals operator.
+                if (it === element)
+                    count++;
+            }, start);
+            return count;
+        };
+        /**
+         * return an array with the indexes of the element in array
+         * @param {object} element element to find
+         * @param {number} [start=1] start index
+         * @returns {boq.Array}
+         */
+        self.indexes = function (element, start) {
+            if (typeof start === 'undefined')
+                start = 0;
+            var result = new boq.Array();
+            self.each(function (it, ind) {
+                //using the three equals operator.
+                if (it === element)
+                    result.push(ind);
+            }, start);
+            return result;
+        };
         return self;
     };
 
@@ -250,9 +341,9 @@
             var rObj = privatesRouter.getRouteObjectByCreatedRoute(hash);
             if (privatesRouter.currentRoute) {
                 var current = privatesRouter.currentRoute;
-                if (typeof current.config.exit === 'function') {
+                if (typeof current.exit === 'function') {
                     //only stop event if the result is === false.
-                    if (current.config.exit() === false) {
+                    if (current.exit() === false) {
                         //stop
                         resultExit = false;
                         //remove to not trigger when the hash change
@@ -267,8 +358,8 @@
                 privatesRouter.currentRoute = rObj;
                 var container;
                 //convert querySelector in element.
-                if (typeof rObj.config.container === 'string')
-                    container = boq.u.qs(rObj.config.container);
+                if (typeof rObj.container === 'string')
+                    container = boq.u.qs(rObj.container);
                 //if exist jQuery, the element is converted to jQuery element.
                 if (typeof jQuery !== 'undefined')
                     container = jQuery(container);
@@ -282,7 +373,8 @@
                     }
                 });
                 //call the callback function.
-                rObj.config.cb({
+                rObj.cb({
+                    name: rObj.name,
                     container: container,
                     newRoute: hash,
                     originalRoute: rObj.route,
@@ -294,9 +386,11 @@
         on: function (route, config) {
             //add to routes
             var defaultConfig = {
+                name: undefined,
+                route: route,
+                container: undefined,
                 cb: undefined,
-                exit: undefined,
-                container: undefined
+                exit: undefined
             };
             if (typeof config === 'function')
                 defaultConfig.cb = config;
@@ -316,17 +410,13 @@
                         return !(it.charAt(0) === ':');
                     });
                     if (routeParts.compare(routeParts2)) {
-                        it.route = route;
-                        it.config = defaultConfig;
+                        boq.utils.extends(it, defaultConfig);
                     }
                 });
             }
             else {
                 //add new route
-                boq.Router.routes.push({
-                    route: route,
-                    config: defaultConfig
-                });
+                boq.Router.routes.push(defaultConfig);
             }
 
             //check if is the current route and trigger event.
@@ -347,6 +437,17 @@
                 if (routeParts.compare(routeParts2)) {
                     routeToDelete = it;
                 }
+            });
+            if (routeToDelete) {
+                boq.Router.routes = boq.Router.routes.without(routeToDelete);
+            }
+            return boq.Router;
+        },
+        offByName: function (routeName) {
+            var routeToDelete;
+            boq.Router.routes.each(function (it) {
+                if (it.name === routeName)
+                    routeToDelete = it;
             });
             if (routeToDelete) {
                 boq.Router.routes = boq.Router.routes.without(routeToDelete);
@@ -429,6 +530,14 @@
             return privatesRouter.off.call(this, route)
         },
         /**
+         * remove a route by name
+         * @param {string} routeName route name to remove.
+         * @returns {object} Boq.Router
+         */
+        offByName: function (routeName) {
+            return privatesRouter.offByName.call(this, routeName);
+        },
+        /**
          *
          * @param route route destination
          * @returns {object} Boq.Router
@@ -451,6 +560,13 @@
         forward: function () {
             window.history.forward();
             return boq.Router;
+        },
+        /**
+         * get the current route
+         * @returns {object}
+         */
+        current: function () {
+            return privatesRouter.currentRoute;
         }
     };
 

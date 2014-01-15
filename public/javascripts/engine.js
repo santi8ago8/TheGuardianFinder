@@ -76,6 +76,7 @@
 
         //
         b.Router.on("/", {
+            name: 'index',
             cb: renderIndex,
             container: '.content.result.find-result',
             exit: function () {
@@ -108,6 +109,10 @@
                 socket.emit('find', {find: value, page: currentPage, sections: cats});
             }
         });
+        b.u.qs('.title').f().addEventListener('click', function () {
+            if (b.Router.current().name == 'index')
+                renderIndex();
+        })
 
     };
 
