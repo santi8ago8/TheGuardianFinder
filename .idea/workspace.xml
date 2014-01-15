@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e791e889-d329-4d8e-a34f-e1a559e8ad5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/boq.js" afterPath="$PROJECT_DIR$/public/javascripts/boq.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/engine.js" afterPath="$PROJECT_DIR$/public/javascripts/engine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e791e889-d329-4d8e-a34f-e1a559e8ad5b" name="Default" comment="" />
     <ignored path="TheGuardianFinder.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
