@@ -3,6 +3,9 @@ TheGuardianFinder
 
 TheGuardian reader with "The Guardian open platform"  
 
+to install:
+$ sudo npm install
+
 to run:
 $ node app.js   
    
