@@ -15,7 +15,7 @@ exports.index = function (req, res) {
 var cachedSections = [];
 
 var url = "http://content.guardianapis.com/sections?api-key=%s";
-var apiKey = "be2jzzzm5hgtv2gzp3et9zuw";
+var apiKey = "t37bc9ydznj5jwbwc6h76n2c";
 var finalUrl = util.format(url, apiKey);
 
 var getCategories = function (err, resp, body) {

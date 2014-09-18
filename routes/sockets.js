@@ -7,18 +7,23 @@
 var io = global.socketio;
 var needle = require('needle');
 var util = require('util');
-var apiKey = "be2jzzzm5hgtv2gzp3et9zuw";
+var apiKey = "t37bc9ydznj5jwbwc6h76n2c";
 io.sockets.on('connection', function (socket) {
     socket.on('find', function (data) {
         var value = data.find;
-        if (value == '' || value == null)
-            value = "+";
-        var urlFind = "http://content.guardianapis.com/search?q=%s&show-fields=thumbnail&page=%s&api-key=%s";
+        var urlFind = "http://content.guardianapis.com/search?show-fields=thumbnail&page=%s&api-key=%s";
+
+        // update http://open-platform.theguardian.com/explore/
+        //if have query add q=query else don't
+        if (!(value == '' || value == null))
+            urlFind += "&q=" + value;
+
+
         if (data.sections.length > 0) {
             urlFind += "&section=" + data.sections.join('|');
         }
 
-        var finalUrl = util.format(urlFind, value, data.page, apiKey);
+        var finalUrl = util.format(urlFind, data.page, apiKey);
         needle.get(finalUrl, function (err, resp, body) {
             if (!err && resp.statusCode == 200) {
                 socket.emit('result', body);
@@ -31,7 +36,7 @@ io.sockets.on('connection', function (socket) {
 
     });
     socket.on('view', function (data) {
-        var urlView = "http://content.guardianapis.com/%s?show-fields=all&api-key=%s"
+        var urlView = "http://content.guardianapis.com/%s?show-fields=all&api-key=%s";
         urlView = util.format(urlView, data.id, apiKey);
 
         needle.get(urlView, function (err, resp, body) {

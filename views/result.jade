@@ -3,7 +3,8 @@ script(type='text/template',id='tmplResults').
         - var not = response.results[i];
         article.notice
             a(href='#/news/'+encodeURIComponent(not.id))
-                img(src=not.fields.thumbnail)
+                if (not.fields)
+                    img(src=not.fields.thumbnail)
                 p= not.webTitle
                 .clear
             .clear
